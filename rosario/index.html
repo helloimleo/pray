@@ -72,11 +72,7 @@
         /* Navigasi Swiper */
         .swiper-button-next,
         .swiper-button-prev {
-            color: #4a90e2;
-        }
-
-        .swiper-pagination-bullet-active {
-            background-color: #4a90e2;
+            color: #e24a4a;
         }
     </style>
 </head>
@@ -100,7 +96,6 @@
     <!-- Swiper Container -->
     <div class="swiper-container" id="doa-container" style="display:none;">
         <div class="swiper-wrapper" id="swiper-wrapper"></div>
-        <div class="swiper-pagination"></div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
     </div>
@@ -180,10 +175,6 @@
                 navigation: {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
-                },
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
                 },
             });
         }
