@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doa Rosario Lengkap</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <style>
+        /* Reset body */
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Header styling */
+        header {
+            background-color: #4a90e2;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Tombol */
+        button {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #357abd;
+        }
+
+        /* Swiper Container Styling */
+        .swiper-container {
+            width: 100%;
+            max-width: 480px;
+            /* Fokus untuk smartphone */
+            height: 80vh;
+            margin: 0 auto;
+            overflow: hidden;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .swiper-wrapper {
+            box-sizing: border-box;
+        }
+
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            box-sizing: border-box;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Navigasi Swiper */
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #4a90e2;
+        }
+
+        .swiper-pagination-bullet-active {
+            background-color: #4a90e2;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Doa Rosario</h1>
+        <p>Doa Rosario Lengkap dan Terstruktur</p>
+    </header>
+
+    <!-- Pilih Peristiwa -->
+    <div style="text-align: center; margin: 20px;">
+        <h2>Pilih Peristiwa</h2>
+        <button onclick="mulaiDoa('gembira')">Peristiwa Gembira</button>
+        <button onclick="mulaiDoa('sedih')">Peristiwa Sedih</button>
+        <button onclick="mulaiDoa('mulia')">Peristiwa Mulia</button>
+        <button onclick="mulaiDoa('terang')">Peristiwa Terang</button>
+    </div>
+
+    <!-- Swiper Container -->
+    <div class="swiper-container" id="doa-container" style="display:none;">
+        <div class="swiper-wrapper" id="swiper-wrapper"></div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
+    <!-- Swiper.js Script -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        const peristiwaData = {
+            gembira: ["Kabar Sukacita", "Maria Mengunjungi Elisabet", "Kelahiran Yesus", "Yesus Dipersembahkan di Bait Allah", "Yesus Ditemukan di Bait Allah"],
+            sedih: ["Yesus Berdoa di Taman Getsemani", "Yesus Dicambuk", "Yesus Dimahkotai Duri", "Yesus Memanggul Salib", "Yesus Wafat di Kayu Salib"],
+            mulia: ["Kebangkitan Yesus", "Yesus Naik ke Surga", "Roh Kudus Turun atas Para Rasul", "Maria Diangkat ke Surga", "Maria Dimahkotai di Surga"],
+            terang: ["Yesus Dibaptis di Sungai Yordan", "Mukjizat Yesus di Kana", "Yesus Memberitakan Kerajaan Allah", "Yesus Berubah Rupa di Gunung Tabor", "Yesus Menetapkan Ekaristi"]
+        };
+
+        let swiper;
+
+        function mulaiDoa(peristiwa) {
+            const swiperWrapper = document.getElementById("swiper-wrapper");
+            swiperWrapper.innerHTML = ""; // Kosongkan Slide
+
+            // Tambah Doa Pembuka
+            tambahSlide("Doa Pembuka", "Dalam nama Bapa, Putra, dan Roh Kudus. Amin. Aku percaya...");
+
+            // Tambah Peristiwa
+            peristiwaData[peristiwa].forEach((judul, index) => {
+                tambahSlide(`Peristiwa ${index + 1}: ${judul}`, "Renungan singkat...");
+                tambahSlide("Doa Bapa Kami", "Bapa Kami yang ada di surga...");
+                for (let i = 1; i <= 10; i++) {
+                    tambahSlide(`Salam Maria ke-${i}`, "Salam Maria, penuh rahmat...");
+                }
+                tambahSlide("Kemuliaan", "Kemuliaan kepada Bapa...");
+                tambahSlide("Doa Fatima", "Ya Yesus yang baik, ampunilah dosa kami...");
+            });
+
+            // Tambah Doa Penutup
+            tambahSlide("Doa Penutup", "Salam Ratu...");
+
+            // Tampilkan Slider
+            document.getElementById("doa-container").style.display = "block";
+
+            // Hapus instance Swiper sebelumnya jika ada
+            if (swiper) swiper.destroy(true, true);
+
+            swiper = new Swiper('.swiper-container', {
+                slidesPerView: 1,
+                spaceBetween: 0,
+                centeredSlides: true,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+            });
+        }
+
+        function tambahSlide(judul, isi) {
+            const slide = document.createElement("div");
+            slide.className = "swiper-slide";
+            slide.innerHTML = `<h3>${judul}</h3><p>${isi}</p>`;
+            document.getElementById("swiper-wrapper").appendChild(slide);
+        }
+    </script>
+</body>
+
+</html>
