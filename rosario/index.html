@@ -109,24 +109,48 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
         const peristiwaData = {
-            gembira: ["Kabar Sukacita", "Maria Mengunjungi Elisabet", "Kelahiran Yesus", "Yesus Dipersembahkan di Bait Allah", "Yesus Ditemukan di Bait Allah"],
-            sedih: ["Yesus Berdoa di Taman Getsemani", "Yesus Dicambuk", "Yesus Dimahkotai Duri", "Yesus Memanggul Salib", "Yesus Wafat di Kayu Salib"],
-            mulia: ["Kebangkitan Yesus", "Yesus Naik ke Surga", "Roh Kudus Turun atas Para Rasul", "Maria Diangkat ke Surga", "Maria Dimahkotai di Surga"],
-            terang: ["Yesus Dibaptis di Sungai Yordan", "Mukjizat Yesus di Kana", "Yesus Memberitakan Kerajaan Allah", "Yesus Berubah Rupa di Gunung Tabor", "Yesus Menetapkan Ekaristi"]
+            gembira: [
+                { judul: "Kabar Sukacita", renungan: "Malaikat Gabriel menyampaikan kabar bahwa Maria akan melahirkan Yesus." },
+                { judul: "Maria Mengunjungi Elisabet", renungan: "Maria mengunjungi Elisabet, dan bayi dalam kandungan Elisabet melonjak kegirangan." },
+                { judul: "Kelahiran Yesus", renungan: "Yesus lahir di Betlehem dalam kesederhanaan untuk menyelamatkan umat manusia." },
+                { judul: "Yesus Dipersembahkan di Bait Allah", renungan: "Maria dan Yusuf mempersembahkan Yesus di Bait Allah sesuai hukum Taurat." },
+                { judul: "Yesus Ditemukan di Bait Allah", renungan: "Yesus ditemukan sedang mengajar para ahli Taurat di Bait Allah." }
+            ],
+            sedih: [
+                { judul: "Yesus Berdoa di Taman Getsemani", renungan: "Yesus berdoa dalam penderitaan mendalam di Taman Getsemani." },
+                { judul: "Yesus Dicambuk", renungan: "Yesus menerima cambukan demi menanggung dosa manusia." },
+                { judul: "Yesus Dimahkotai Duri", renungan: "Yesus dimahkotai duri dan dihina oleh para prajurit." },
+                { judul: "Yesus Memanggul Salib", renungan: "Yesus memanggul salib menuju Golgota dengan penuh penderitaan." },
+                { judul: "Yesus Wafat di Kayu Salib", renungan: "Yesus wafat di kayu salib untuk menyelamatkan umat manusia." }
+            ],
+            mulia: [
+                { judul: "Kebangkitan Yesus", renungan: "Yesus bangkit dari kematian mengalahkan dosa dan maut." },
+                { judul: "Yesus Naik ke Surga", renungan: "Yesus naik ke surga dan duduk di sebelah kanan Bapa." },
+                { judul: "Roh Kudus Turun atas Para Rasul", renungan: "Roh Kudus turun memberikan kekuatan kepada para rasul." },
+                { judul: "Maria Diangkat ke Surga", renungan: "Maria diangkat ke surga dengan jiwa dan raganya." },
+                { judul: "Maria Dimahkotai di Surga", renungan: "Maria dimahkotai sebagai Ratu Surga dan Bumi." }
+            ],
+            terang: [
+                { judul: "Yesus Dibaptis di Sungai Yordan", renungan: "Yesus dibaptis sebagai tanda awal pelayanan-Nya di dunia." },
+                { judul: "Mukjizat Yesus di Kana", renungan: "Yesus mengubah air menjadi anggur pada pesta perkawinan di Kana." },
+                { judul: "Yesus Memberitakan Kerajaan Allah", renungan: "Yesus mewartakan Kerajaan Allah dan mengajak semua orang untuk bertobat." },
+                { judul: "Yesus Berubah Rupa di Gunung Tabor", renungan: "Yesus menunjukkan kemuliaan-Nya di hadapan para murid." },
+                { judul: "Yesus Menetapkan Ekaristi", renungan: "Yesus menetapkan Ekaristi sebagai peringatan akan tubuh dan darah-Nya." }
+            ]
         };
 
         let swiper;
 
         function mulaiDoa(peristiwa) {
             const swiperWrapper = document.getElementById("swiper-wrapper");
-            swiperWrapper.innerHTML = ""; // Kosongkan Slide
+            swiperWrapper.innerHTML = ""; // Kosongkan slide sebelumnya
 
-            // Tambah Doa Pembuka
+            // Tambahkan Doa Pembuka
             tambahSlide("Doa Pembuka", "Dalam nama Bapa, Putra, dan Roh Kudus. Amin. Aku percaya...");
 
-            // Tambah Peristiwa
-            peristiwaData[peristiwa].forEach((judul, index) => {
-                tambahSlide(`Peristiwa ${index + 1}: ${judul}`, "Renungan singkat...");
+            // Tambahkan setiap peristiwa beserta renungan
+            peristiwaData[peristiwa].forEach((item, index) => {
+                tambahSlide(`Peristiwa ${index + 1}: ${item.judul}`, item.renungan); // Renungan
                 tambahSlide("Doa Bapa Kami", "Bapa Kami yang ada di surga...");
                 for (let i = 1; i <= 10; i++) {
                     tambahSlide(`Salam Maria ke-${i}`, "Salam Maria, penuh rahmat...");
@@ -135,15 +159,14 @@
                 tambahSlide("Doa Fatima", "Ya Yesus yang baik, ampunilah dosa kami...");
             });
 
-            // Tambah Doa Penutup
+            // Tambahkan Doa Penutup
             tambahSlide("Doa Penutup", "Salam Ratu...");
 
-            // Tampilkan Slider
+            // Tampilkan slider
             document.getElementById("doa-container").style.display = "block";
 
-            // Hapus instance Swiper sebelumnya jika ada
+            // Inisialisasi Swiper
             if (swiper) swiper.destroy(true, true);
-
             swiper = new Swiper('.swiper-container', {
                 slidesPerView: 1,
                 spaceBetween: 0,
@@ -166,6 +189,7 @@
             document.getElementById("swiper-wrapper").appendChild(slide);
         }
     </script>
+
 </body>
 
 </html>
