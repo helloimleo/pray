@@ -140,6 +140,9 @@
             const swiperWrapper = document.getElementById("swiper-wrapper");
             swiperWrapper.innerHTML = ""; // Kosongkan slide sebelumnya
 
+            // Menampilkan pop-up
+            tampilPopup(peristiwa);
+
             // Tambahkan Doa Pembuka
             tambahSlide("(1). Tanda Salib & Aku Percaya", "<p><b>Dalam nama Bapa,</b> Putra, dan Roh Kudus. Amin.</p> <br> <p><b>Aku percaya akan Allah,</b> Bapa yang Maha Kuasa, Pencipta langit dan bumi. Dan akan Yesus Kristus, Putra-Nya yang tunggal, Tuhan kita. Yang dikandung dari Roh Kudus, dilahirkan oleh Perawan Maria. Yang menderita sengsara dalam pemerintahan Pontius Pilatus, disalibkan, wafat, dan dimakamkan. Yang turun ke tempat penantian, pada hari ketiga bangkit dari antara orang mati. Yang naik ke Surga, duduk di sebelah kanan Allah Bapa yang Maha Kuasa. Dari situ Ia akan datang mengadili orang hidup dan mati. Aku percaya akan Roh Kudus, Gereja Katolik yang kudus, persekutuan para Kudus, pengampunan dosa, kebangkitan badan, kehidupan kekal. Amin.</p>");
             tambahSlide("(2). Kemuliaan, Terpujilah & Bapa Kami", "<p><b>Kemuliaan kepada Bapa,</b> dan Putra, dan Roh Kudus. Seperti pada permulaan, sekarang, selalu, dan sepanjang segala abad. Amin.</p> <br> <p><b>Terpujilah nama Yesus,</b> Maria, dan Yosef. Sekarang dan selama-lamanya. Amin.</p> <br> <p><b>Bapa Kami yang ada di Surga,</b> dimuliakanlah nama-Mu. Datanglah kerajaan-Mu. Jadilah kehendak-Mu, diatas bumi seperti di dalam Surga. Berilah kami rejeki pada hari ini. Dan ampunilah kesalahan kami, seperti kami pun mengampuni yang bersalah kepada kami. Dan janganlah masukan kami ke dalam pencobaan, tetapi bebaskanlah kami dari yang jahat. Amin.</p>");
@@ -177,6 +180,10 @@
                     prevEl: '.swiper-button-prev',
                 },
             });
+        }
+
+        function tampilPopup(peristiwa) {
+            alert(`Kamu telah memilih peristiwa ${peristiwa}`);
         }
 
         function tambahSlide(judul, isi) {
