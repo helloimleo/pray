@@ -81,7 +81,8 @@
     <!-- Header -->
     <header>
         <h1>Doa Rosario</h1>
-        <p>Coming Soon</p>
+        <p>Peristiwa Gembira: Senin & Sabtu | Peristiwa Sedih: Selasa & Jumat | Peristiwa Mulia: Rabu & Minggu |
+            Peristiwa Terang: Kamis</p>
     </header>
 
     <!-- Pilih Peristiwa -->
@@ -137,34 +138,41 @@
         let swiper;
 
         function mulaiDoa(peristiwa) {
+            // Sembunyikan tombol dan ubah judul
+            document.querySelector('h2').innerText = `Peristiwa ${peristiwa.charAt(0).toUpperCase() + peristiwa.slice(1)}`;
+            document.querySelector('h2').style.fontSize = "24px"; // Sesuaikan ukuran judul
+            document.querySelector('h2').style.fontWeight = "bold"; // Tebalkan teks judul
+            document.querySelector('h2').style.margin = "20px 0"; // Berikan jarak pada judul
+
+            document.querySelectorAll('button').forEach(button => button.style.display = 'none');
+
             const swiperWrapper = document.getElementById("swiper-wrapper");
             swiperWrapper.innerHTML = ""; // Kosongkan slide sebelumnya
 
-            // Menampilkan pop-up
+            // Tampilkan pop-up
             tampilPopup(peristiwa);
 
             // Tambahkan Doa Pembuka
-            tambahSlide("(1). Tanda Salib & Aku Percaya", "<p><b>Dalam nama Bapa,</b> Putra, dan Roh Kudus. Amin.</p> <br> <p><b>Aku percaya akan Allah,</b> Bapa yang Maha Kuasa, Pencipta langit dan bumi. Dan akan Yesus Kristus, Putra-Nya yang tunggal, Tuhan kita. Yang dikandung dari Roh Kudus, dilahirkan oleh Perawan Maria. Yang menderita sengsara dalam pemerintahan Pontius Pilatus, disalibkan, wafat, dan dimakamkan. Yang turun ke tempat penantian, pada hari ketiga bangkit dari antara orang mati. Yang naik ke Surga, duduk di sebelah kanan Allah Bapa yang Maha Kuasa. Dari situ Ia akan datang mengadili orang hidup dan mati. Aku percaya akan Roh Kudus, Gereja Katolik yang kudus, persekutuan para Kudus, pengampunan dosa, kebangkitan badan, kehidupan kekal. Amin.</p>");
-            tambahSlide("(2). Kemuliaan, Terpujilah & Bapa Kami", "<p><b>Kemuliaan kepada Bapa,</b> dan Putra, dan Roh Kudus. Seperti pada permulaan, sekarang, selalu, dan sepanjang segala abad. Amin.</p> <br> <p><b>Terpujilah nama Yesus,</b> Maria, dan Yosef. Sekarang dan selama-lamanya. Amin.</p> <br> <p><b>Bapa Kami yang ada di Surga,</b> dimuliakanlah nama-Mu. Datanglah kerajaan-Mu. Jadilah kehendak-Mu, diatas bumi seperti di dalam Surga. Berilah kami rejeki pada hari ini. Dan ampunilah kesalahan kami, seperti kami pun mengampuni yang bersalah kepada kami. Dan janganlah masukan kami ke dalam pencobaan, tetapi bebaskanlah kami dari yang jahat. Amin.</p>");
-            tambahSlide("(3). Salam Putri Allah Bapa", "<p>Salam Maria, penuh rahmat. Tuhan sertamu. Terpujilah engkau di antara wanita, dan terpujilah buah tubuhmu, Yesus. Santa Maria, Bunda Allah. Doakanlah kami yang berdosa ini, sekarang dan pada waktu kami mati. Amin.</p>");
-            tambahSlide("(4). Salam Bunda Allah Putra.", "<p>Salam Maria, penuh rahmat. Tuhan sertamu. Terpujilah engkau di antara wanita, dan terpujilah buah tubuhmu, Yesus. Santa Maria, Bunda Allah. Doakanlah kami yang berdosa ini, sekarang dan pada waktu kami mati. Amin.</p>");
-            tambahSlide("(5). Salam Mempelai Allah Roh Kudus", "<p>Salam Maria, penuh rahmat. Tuhan sertamu. Terpujilah engkau di antara wanita, dan terpujilah buah tubuhmu, Yesus. Santa Maria, Bunda Allah. Doakanlah kami yang berdosa ini, sekarang dan pada waktu kami mati. Amin.</p>");
-            tambahSlide("(6). Kemuliaan, Terpujilah & Ya Yesus", "<p><b>Kemuliaan kepada Bapa,</b> dan Putra, dan Roh Kudus. Seperti pada permulaan, sekarang, selalu, dan sepanjang segala abad. Amin.</p> <br> <p><b>Terpujilah nama Yesus,</b> Maria, dan Yosef. Sekarang dan selama-lamanya. Amin.</p> <br> <p><b>Ya Yesus yang baik,</b> ampunilah dosa-dosa kami. Selamatkanlah kami dari api neraka dan hantarkanlah jiwa-jiwa ke dalam Surga, terutama mereka yang sangat membutuhkan kerahiman-Mu. Amin.</p>");
-
+            tambahSlide("(1). Tanda Salib & Aku Percaya", "<p><b>Dalam nama Bapa,</b> Putra, dan Roh Kudus. Amin.</p> <br> <p><b>Aku percaya akan Allah,</b> Bapa yang Maha Kuasa...</p>");
+            tambahSlide("(2). Kemuliaan, Terpujilah & Bapa Kami", "<p><b>Kemuliaan kepada Bapa...</p>");
+            tambahSlide("(3). Salam Putri Allah Bapa", "<p>Salam Maria...</p>");
+            tambahSlide("(4). Salam Bunda Allah Putra.", "<p>Salam Maria...</p>");
+            tambahSlide("(5). Salam Mempelai Allah Roh Kudus", "<p>Salam Maria...</p>");
+            tambahSlide("(6). Kemuliaan, Terpujilah & Ya Yesus", "<p><b>Kemuliaan kepada Bapa...</p>");
 
             // Tambahkan setiap peristiwa beserta renungan
             peristiwaData[peristiwa].forEach((item, index) => {
-                tambahSlide(`Peristiwa ${index + 1}: ${item.judul}`, item.renungan); // Renungan
-                tambahSlide("Bapa Kami", "Bapa Kami yang ada di Surga, dimuliakanlah nama-Mu. Datanglah kerajaan-Mu. Jadilah kehendak-Mu, diatas bumi seperti di dalam Surga. Berilah kami rejeki pada hari ini. Dan ampunilah kesalahan kami, seperti kami pun mengampuni yang bersalah kepada kami. Dan janganlah masukan kami ke dalam pencobaan, tetapi bebaskanlah kami dari yang jahat. Amin.");
+                tambahSlide(`Peristiwa ${index + 1}: ${item.judul}`, item.renungan);
+                tambahSlide("Bapa Kami", "Bapa Kami yang ada di Surga...");
                 for (let i = 1; i <= 10; i++) {
-                    tambahSlide(`Salam Maria ke-${i}`, "Salam Maria, penuh rahmat. Tuhan sertamu. Terpujilah engkau di antara wanita, dan terpujilah buah tubuhmu, Yesus. Santa Maria, Bunda Allah. Doakanlah kami yang berdosa ini, sekarang dan pada waktu kami mati. Amin.");
+                    tambahSlide(`Salam Maria ke-${i}`, "Salam Maria, penuh rahmat...");
                 }
-                tambahSlide("Kemuliaan & Terpujilah", "<p><b>Kemuliaan kepada Bapa,</b> dan Putra, dan Roh Kudus. Seperti pada permulaan, sekarang, selalu, dan sepanjang segala abad. Amin.</p> <br> <p><b>Terpujilah nama Yesus,</b> Maria, dan Yosef. Sekarang dan selama-lamanya. Amin.</p>");
-                tambahSlide("Ya Yesus", "Ya Yesus yang baik, ampunilah dosa-dosa kami. Selamatkanlah kami dari api neraka dan hantarkanlah jiwa-jiwa ke dalam Surga, terutama mereka yang sangat membutuhkan kerahiman-Mu. Amin.");
+                tambahSlide("Kemuliaan & Terpujilah", "<p><b>Kemuliaan kepada Bapa...</p>");
+                tambahSlide("Ya Yesus", "Ya Yesus yang baik...");
             });
 
             // Tambahkan Doa Penutup
-            tambahSlide("Doa Penutup", "<p><b>Salam, Ya Ratu,</b> Bunda yang berbelas kasih, hidup, hiburan dan harapan kami. Kami semua memanjatkan permohonan, kami amat susah, mengeluh, mengesah dalam lembah duka ini. Ya Ibunda, ya pelindung kami, limpahkanlah kasih sayangMu yang besar kepada kami. Dan Yesus, PutraMu yang terpuji itu, semoga Kau tunjukkan kepada kami. O Ratu, O Ibu, O Maria Bunda Kristus. Doakanlah kami, ya Santa Bunda Allah Supaya kami dapat menikmati janji Kristus Ya Allah, Putra-Mu telah memperoleh bagi kami ganjaran kehidupan kekal melalui hidup, wafat dan kebangkitan-Nya. Kami mohon, agar dengan merenungkan misteri Rosario Suci Santa Perawan Maria, kami dapat menghayati maknanya dan memperoleh apa yang dijanjikan. Demi Kristus, Tuhan kami. Amin.</p>");
+            tambahSlide("Doa Penutup", "<p><b>Salam, Ya Ratu...</p>");
 
             // Tampilkan slider
             document.getElementById("doa-container").style.display = "block";
@@ -181,6 +189,7 @@
                 },
             });
         }
+
 
         function tampilPopup(peristiwa) {
             alert(`Kamu telah memilih peristiwa ${peristiwa}`);
